@@ -2,11 +2,12 @@ package Window;
 
 import java.awt.Canvas;
 import java.awt.image.BufferStrategy;
-import java.awt.Graphics;
-import java.awt.Color;
 
 import Framework.ObjectId;
-import Objects.Test;
+import Objects.Player;
+
+import java.awt.Graphics;
+import java.awt.Color;
 
 public class Game extends Canvas implements Runnable {
 
@@ -15,13 +16,19 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
     private Thread thread;
 
+    public static int WIDTH, HEIGHT;
+
     ObjectHandler handler; // Object
 
     private void init() {
+        WIDTH  = getWidth();
+        HEIGHT = getHeight();
+
         handler = new ObjectHandler();
 
-        handler.addObject(new Test(100, 100, ObjectId.Test));
+        handler.addObject(new Player(100,100,ObjectId.Player));
 
+        handler.createLevel();
     }
 
     public synchronized void start() {

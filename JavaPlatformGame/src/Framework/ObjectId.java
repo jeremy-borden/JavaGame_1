@@ -2,5 +2,5 @@ package Framework;
 
 public enum ObjectId {
 
-    Player(), Test();
+    Player(), Block();
 }
