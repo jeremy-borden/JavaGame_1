@@ -8,6 +8,7 @@ import java.util.LinkedList;
 
 import Framework.GameObject;
 import Framework.ObjectId;
+import Window.ObjectHandler;
 
 public class Player extends GameObject {
 
@@ -15,13 +16,16 @@ public class Player extends GameObject {
     private float gravity = 0.1f;
     private final float MAX_SPEED = 10;
 
-    public Player(float x, float y, ObjectId id) {
+    private ObjectHandler handler;
+
+    public Player(float x, float y, ObjectHandler handler, ObjectId id) {
         super(x, y, id);
+        this.handler = handler;
     }
 
     public void tick(LinkedList<GameObject> object) {
         x+=velX;
-        //y+=velY;
+        y+=velY;
 
         if(falling || jumping){
             velY += gravity;
@@ -29,6 +33,23 @@ public class Player extends GameObject {
             if(velY > MAX_SPEED){
                 velY = MAX_SPEED;
             }
+        }
+
+        Collision(object);
+    }
+
+    private void Collision(LinkedList<GameObject> object){
+        for(int i = 0; i<handler.object.size(); i++){
+            GameObject tempObject = handler.object.get(i);
+            if(tempObject.getId() == ObjectId.Block){
+                if(getBounds().intersects(tempObject.getBounds())){
+                    y = tempObject.getY() - height;
+                    velY = 0;
+                    falling = false;
+                    jumping = false;
+                }
+            }
+
         }
     }
 

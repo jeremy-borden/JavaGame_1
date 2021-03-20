@@ -3,6 +3,7 @@ package Window;
 import java.awt.Canvas;
 import java.awt.image.BufferStrategy;
 
+import Framework.KeyInput;
 import Framework.ObjectId;
 import Objects.Player;
 
@@ -21,14 +22,17 @@ public class Game extends Canvas implements Runnable {
     ObjectHandler handler; // Object
 
     private void init() {
-        WIDTH  = getWidth();
+        requestFocus();
+        WIDTH = getWidth();
         HEIGHT = getHeight();
 
         handler = new ObjectHandler();
 
-        handler.addObject(new Player(100,100,ObjectId.Player));
+        handler.addObject(new Player(100, 100, handler, ObjectId.Player));
 
         handler.createLevel();
+
+        this.addKeyListener(new KeyInput(handler));
     }
 
     public synchronized void start() {
