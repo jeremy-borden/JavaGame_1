@@ -39,6 +39,15 @@ public class ObjectHandler {
         for(int xx = 0; xx < Game.WIDTH+32; xx+=32){
             addObject(new Block(xx,Game.HEIGHT-32,ObjectId.Block));
         }
+        for(int xx = 2*(Game.WIDTH/8); xx < 6*(Game.WIDTH/8); xx+=32){
+            addObject(new Block(xx,Game.HEIGHT-232,ObjectId.Block));
+        }
+        for(int yy = 0; yy < Game.HEIGHT-32; yy+=32){
+            addObject(new Block(Game.WIDTH-33,yy,ObjectId.Block));
+        }
+        for(int yy = 0; yy < Game.HEIGHT-32; yy+=32){
+            addObject(new Block(0,yy,ObjectId.Block));
+        }
     }
 
 }

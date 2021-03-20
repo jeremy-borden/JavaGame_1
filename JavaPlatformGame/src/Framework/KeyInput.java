@@ -30,6 +30,10 @@ public class KeyInput extends KeyAdapter {
                     pressing_A = true;
                     tempObject.setVelX(-5);
                 }
+                if(key == KeyEvent.VK_SPACE && !tempObject.getJumping()){
+                    tempObject.setJumping(true);
+                    tempObject.setVelY(-15);
+                }
                     
             }
         }

@@ -1,7 +1,7 @@
 package Objects;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
+//import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Color;
 import java.util.LinkedList;
@@ -13,7 +13,7 @@ import Window.ObjectHandler;
 public class Player extends GameObject {
 
     private float width = 48, height = 96;
-    private float gravity = 0.1f;
+    private float gravity = 0.5f;
     private final float MAX_SPEED = 10;
 
     private ObjectHandler handler;
@@ -42,11 +42,27 @@ public class Player extends GameObject {
         for(int i = 0; i<handler.object.size(); i++){
             GameObject tempObject = handler.object.get(i);
             if(tempObject.getId() == ObjectId.Block){
+                //TOP COLLISION
+                if(getBoundsTop().intersects(tempObject.getBounds())){
+                    y = tempObject.getY()+32;
+                    velY = 0;
+                }
+                //BOTTOM COLLISION
                 if(getBounds().intersects(tempObject.getBounds())){
                     y = tempObject.getY() - height;
                     velY = 0;
                     falling = false;
                     jumping = false;
+                }else{
+                    falling = true;
+                }
+                //RIGHT COLLISION
+                if(getBoundsRight().intersects(tempObject.getBounds())){
+                    x = tempObject.getX()-(width+1);
+                }
+                //LEFT COLLISION
+                if(getBoundsLeft().intersects(tempObject.getBounds())){
+                    x = tempObject.getX() + 33;
                 }
             }
 
@@ -57,13 +73,8 @@ public class Player extends GameObject {
         g.setColor(Color.blue);
         g.fillRect((int) x, (int) y, (int) width, (int) height);
 
-        Graphics2D g2d = (Graphics2D) g;
+        //Graphics2D g2d = (Graphics2D) g;
 
-        g.setColor(Color.red);
-        g2d.draw(getBounds());
-        g2d.draw(getBoundsRight());
-        g2d.draw(getBoundsLeft());
-        g2d.draw(getBoundsTop());
     }
 
     public Rectangle getBounds() {
