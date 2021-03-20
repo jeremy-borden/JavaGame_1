@@ -16,7 +16,9 @@ public class Window {
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.setLocation(null);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        game.start();
     }
 }
