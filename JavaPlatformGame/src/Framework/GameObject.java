@@ -28,4 +28,6 @@ public abstract class GameObject {
     public abstract void setVelX(float velX);
     public abstract void setVelY(float velY);
 
+    public abstract ObjectId getId();
+
 }
