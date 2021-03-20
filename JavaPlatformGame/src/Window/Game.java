@@ -2,18 +2,18 @@ package Window;
 
 import java.awt.Canvas;
 import java.awt.image.BufferStrategy;
+import java.util.logging.Handler;
 import java.awt.Graphics;
 import java.awt.Color;
 
 public class Game extends Canvas implements Runnable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 8536431251891368679L;
 
     private boolean running = false;
     private Thread thread;
+
+    Handler handler; //Object
 
     public synchronized void start() {
         if (running)
