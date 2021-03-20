@@ -20,6 +20,7 @@ public class Game extends Canvas implements Runnable {
     public static int WIDTH, HEIGHT;
 
     ObjectHandler handler; // Object
+    Camera cam;
 
     private void init() {
         requestFocus();
