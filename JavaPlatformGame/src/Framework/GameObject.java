@@ -56,19 +56,19 @@ public abstract class GameObject {
         this.velY = velY;
     }
 
-    public boolean getJumping(){
+    public boolean getJumping() {
         return jumping;
     }
 
-    public boolean getFalling(){
+    public boolean getFalling() {
         return jumping;
     }
 
-    public void setJumping(boolean jumping){
+    public void setJumping(boolean jumping) {
         this.jumping = jumping;
     }
 
-    public void setFalling(boolean falling){
+    public void setFalling(boolean falling) {
         this.falling = falling;
     }
 

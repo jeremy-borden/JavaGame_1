@@ -35,13 +35,11 @@ public class Game extends Canvas implements Runnable {
         WIDTH = getWidth();
         HEIGHT = getHeight();
 
-        
-
         BufferedImageLoader loader = new BufferedImageLoader();
         tex = new Texture();
-        
-        level = loader.loadImage("/level.png");//Loading level
-        clouds = loader.loadImage("/bkg_cloud.png"); //load clound backgoubnd
+
+        level = loader.loadImage("/level.png");// Loading level
+        clouds = loader.loadImage("/bkg_cloud.png"); // load clound backgoubnd
 
         handler = new ObjectHandler();
 
@@ -49,8 +47,8 @@ public class Game extends Canvas implements Runnable {
 
         loadImageLevel(level);
 
-        //handler.addObject(new Player(100, 100, handler, ObjectId.Player));
-        //handler.createLevel();
+        // handler.addObject(new Player(100, 100, handler, ObjectId.Player));
+        // handler.createLevel();
 
         this.addKeyListener(new KeyInput(handler));
     }
@@ -94,8 +92,8 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
-        for(int i = 0; i < handler.object.size(); i++){
-            if(handler.object.get(i).getId() == ObjectId.Player){
+        for (int i = 0; i < handler.object.size(); i++) {
+            if (handler.object.get(i).getId() == ObjectId.Player) {
                 cam.tick(handler.object.get(i));
             }
         }
@@ -110,45 +108,45 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         Graphics2D g2d = (Graphics2D) g;
         ////////
-        g.setColor(new Color(25,191,224));
+        g.setColor(new Color(25, 191, 224));
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        //g.drawImage(clouds, 0, 0, 128,128,this);
+        // g.drawImage(clouds, 0, 0, 128,128,this);
 
-        g2d.translate(cam.getX(), cam.getY());///BEGIN OF CAM
-        for(int xx = 0; xx<128* 5; xx+=128*3)
-            g.drawImage(clouds, xx, 10, 128,128,this);
+        g2d.translate(cam.getX(), cam.getY());/// BEGIN OF CAM
+        for (int xx = 0; xx < 128 * 5; xx += 128 * 3)
+            g.drawImage(clouds, xx, 10, 128, 128, this);
         handler.render(g);
 
-        g2d.translate(-cam.getX(), -cam.getY());//END OF CAM
+        g2d.translate(-cam.getX(), -cam.getY());// END OF CAM
         ////////
         g.dispose();
         bs.show();
     }
 
-    private void loadImageLevel(BufferedImage image){
-        int w =image.getWidth();
+    private void loadImageLevel(BufferedImage image) {
+        int w = image.getWidth();
         int h = image.getHeight();
 
-        for(int xx = 0; xx < h; xx++){
-            for(int yy = 0; yy < w; yy++){
-                int pixel  = image.getRGB(xx,yy);
+        for (int xx = 0; xx < h; xx++) {
+            for (int yy = 0; yy < w; yy++) {
+                int pixel = image.getRGB(xx, yy);
                 int red = (pixel >> 16) & 0xff;
                 int green = (pixel >> 8) & 0xff;
                 int blue = (pixel) & 0xff;
 
-                if(red == 255 && green == 255 && blue == 255)
-                    handler.addObject(new Block(xx*32, yy*32, 0, ObjectId.Block));//drit
-                if(red == 0 && green == 255 && blue == 0)
-                    handler.addObject(new Block(xx*32, yy*32, 1, ObjectId.Block));//gras
-                if(red == 0 && green == 0 && blue == 255)
-                    handler.addObject(new Player(xx*32, yy*32, handler, ObjectId.Player));
-                
+                if (red == 255 && green == 255 && blue == 255)
+                    handler.addObject(new Block(xx * 32, yy * 32, 0, ObjectId.Block));// drit
+                if (red == 0 && green == 255 && blue == 0)
+                    handler.addObject(new Block(xx * 32, yy * 32, 1, ObjectId.Block));// gras
+                if (red == 0 && green == 0 && blue == 255)
+                    handler.addObject(new Player(xx * 32, yy * 32, handler, ObjectId.Player));
+
             }
         }
     }
 
-    public static Texture getInstance(){
+    public static Texture getInstance() {
         return tex;
     }
 

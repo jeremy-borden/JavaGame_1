@@ -18,27 +18,27 @@ public class KeyInput extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        for(int i = 0; i<handler.object.size(); i++){
+        for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
-            if(tempObject.getId() == ObjectId.Player){
-                if(key == KeyEvent.VK_D){
+            if (tempObject.getId() == ObjectId.Player) {
+                if (key == KeyEvent.VK_D) {
                     tempObject.setVelX(5);
                     pressing_D = true;
                 }
-                if(key == KeyEvent.VK_A){
+                if (key == KeyEvent.VK_A) {
                     pressing_A = true;
                     tempObject.setVelX(-5);
                 }
-                if(key == KeyEvent.VK_SPACE && !tempObject.getJumping()){
+                if (key == KeyEvent.VK_SPACE && !tempObject.getJumping()) {
                     tempObject.setJumping(true);
                     tempObject.setVelY(-15);
                 }
-                    
+
             }
         }
 
-        if(key == KeyEvent.VK_ESCAPE){
+        if (key == KeyEvent.VK_ESCAPE) {
             System.exit(1);
         }
     }
@@ -46,25 +46,25 @@ public class KeyInput extends KeyAdapter {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
-        for(int i = 0; i<handler.object.size(); i++){
+        for (int i = 0; i < handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
 
-            if(tempObject.getId() == ObjectId.Player){
-                if(key == KeyEvent.VK_D){
-                    if(pressing_A == true)
+            if (tempObject.getId() == ObjectId.Player) {
+                if (key == KeyEvent.VK_D) {
+                    if (pressing_A == true)
                         tempObject.setVelX(-5);
                     else
                         tempObject.setVelX(0);
                     pressing_D = false;
                 }
-                if(key == KeyEvent.VK_A){
-                    if(pressing_D == true)
+                if (key == KeyEvent.VK_A) {
+                    if (pressing_D == true)
                         tempObject.setVelX(5);
                     else
                         tempObject.setVelX(0);
                     pressing_A = false;
                 }
-                    
+
             }
         }
     }
