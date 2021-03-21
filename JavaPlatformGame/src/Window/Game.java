@@ -35,9 +35,10 @@ public class Game extends Canvas implements Runnable {
         WIDTH = getWidth();
         HEIGHT = getHeight();
 
-        tex = new Texture();
+        
 
         BufferedImageLoader loader = new BufferedImageLoader();
+        tex = new Texture();
         
         level = loader.loadImage("/level.png");//Loading level
 

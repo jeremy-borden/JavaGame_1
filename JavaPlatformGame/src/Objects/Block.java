@@ -12,9 +12,11 @@ import Window.Game;
 
 public class Block extends GameObject {
 
-    Texture tex = Game.getInstance();
+    
 
     private int type;
+
+    Texture tex = Game.getInstance();
 
     public Block(float x, float y, int type, ObjectId id) {
         super(x, y, id);

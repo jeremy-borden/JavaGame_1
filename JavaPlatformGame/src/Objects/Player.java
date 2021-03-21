@@ -3,7 +3,7 @@ package Objects;
 import java.awt.Graphics;
 //import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.Color;
+//import java.awt.Color;
 import java.util.LinkedList;
 
 import Framework.GameObject;
@@ -74,8 +74,9 @@ public class Player extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.blue);
-        g.fillRect((int) x, (int) y, (int) width, (int) height);
+        //g.setColor(Color.blue);
+        //g.fillRect((int) x, (int) y, (int) width, (int) height);
+        g.drawImage(tex.player[0],(int)x,(int)y,null);
 
         //Graphics2D g2d = (Graphics2D) g;
 
