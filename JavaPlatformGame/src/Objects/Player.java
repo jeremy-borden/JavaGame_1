@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import Framework.GameObject;
 import Framework.ObjectId;
 import Framework.Texture;
+import Window.Animation;
 import Window.Game;
 import Window.ObjectHandler;
 
@@ -22,9 +23,12 @@ public class Player extends GameObject {
 
     Texture tex = Game.getInstance();
 
+    private Animation playerWalk;
+
     public Player(float x, float y, ObjectHandler handler, ObjectId id) {
         super(x, y, id);
         this.handler = handler;
+        playerWalk = new Animation(1, tex.player[1],tex.player[2],tex.player[3],tex.player[4],tex.player[5],tex.player[6],tex.player[7]);
     }
 
     public void tick(LinkedList<GameObject> object) {
@@ -40,6 +44,8 @@ public class Player extends GameObject {
         }
 
         Collision(object);
+
+        playerWalk.runAnimation();
     }
 
     private void Collision(LinkedList<GameObject> object){
@@ -76,7 +82,10 @@ public class Player extends GameObject {
     public void render(Graphics g) {
         //g.setColor(Color.blue);
         //g.fillRect((int) x, (int) y, (int) width, (int) height);
-        g.drawImage(tex.player[0],(int)x,(int)y,null);
+        if(velX!=0)
+            playerWalk.drawAnimation(g,(int)x,(int)y,48,96);
+        else 
+            g.drawImage(tex.player[0],(int)x,(int)y,48,96, null);
 
         //Graphics2D g2d = (Graphics2D) g;
 
