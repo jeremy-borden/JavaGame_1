@@ -28,8 +28,8 @@ public class Texture {
         getTextures();
     }
     private void getTextures(){
-        block[0] = bs.grabImage(1, 1, 32, 32);
-        block[1] = bs.grabImage(2, 1, 32, 32);
+        block[0] = bs.grabImage(1, 1, 32, 32);//dirt
+        block[1] = bs.grabImage(1, 2, 32, 32);//grass
 
         player[0] = ps.grabImage(1, 1, 32, 32);
         player[1] = ps.grabImage(1, 2, 32, 32);

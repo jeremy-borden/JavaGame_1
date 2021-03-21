@@ -24,7 +24,7 @@ public class Game extends Canvas implements Runnable {
 
     public static int WIDTH, HEIGHT;
 
-    private BufferedImage level = null;
+    private BufferedImage level = null, clouds = null;
 
     ObjectHandler handler; // Object
     Camera cam;
@@ -41,6 +41,7 @@ public class Game extends Canvas implements Runnable {
         tex = new Texture();
         
         level = loader.loadImage("/level.png");//Loading level
+        clouds = loader.loadImage("/bkg_cloud.png"); //load clound backgoubnd
 
         handler = new ObjectHandler();
 
@@ -109,11 +110,14 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         Graphics2D g2d = (Graphics2D) g;
         ////////
-        g.setColor(Color.black);
+        g.setColor(new Color(25,191,224));
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        g2d.translate(cam.getX(), cam.getY());///BEGIN OF CAM
+        //g.drawImage(clouds, 0, 0, 128,128,this);
 
+        g2d.translate(cam.getX(), cam.getY());///BEGIN OF CAM
+        for(int xx = 0; xx<128* 5; xx+=128*3)
+            g.drawImage(clouds, xx, 10, 128,128,this);
         handler.render(g);
 
         g2d.translate(-cam.getX(), -cam.getY());//END OF CAM
@@ -134,7 +138,9 @@ public class Game extends Canvas implements Runnable {
                 int blue = (pixel) & 0xff;
 
                 if(red == 255 && green == 255 && blue == 255)
-                    handler.addObject(new Block(xx*32, yy*32, 0, ObjectId.Block));
+                    handler.addObject(new Block(xx*32, yy*32, 0, ObjectId.Block));//drit
+                if(red == 0 && green == 255 && blue == 0)
+                    handler.addObject(new Block(xx*32, yy*32, 1, ObjectId.Block));//gras
                 if(red == 0 && green == 0 && blue == 255)
                     handler.addObject(new Player(xx*32, yy*32, handler, ObjectId.Player));
                 
