@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.util.LinkedList;
 
 import Framework.GameObject;
-import Framework.ObjectId;
-import Objects.Block;
+//import Framework.ObjectId;
+//import Objects.Block;
 
 public class ObjectHandler {
 

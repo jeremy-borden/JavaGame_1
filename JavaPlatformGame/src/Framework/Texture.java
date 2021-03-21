@@ -1,7 +1,5 @@
 package Framework;
 
-import java.nio.Buffer;
-
 import Window.BufferedImageLoader;
 
 import java.awt.image.BufferedImage;
