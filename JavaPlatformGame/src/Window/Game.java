@@ -8,6 +8,7 @@ import Framework.ObjectId;
 import Objects.Player;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Color;
 
 public class Game extends Canvas implements Runnable {
@@ -28,6 +29,8 @@ public class Game extends Canvas implements Runnable {
         HEIGHT = getHeight();
 
         handler = new ObjectHandler();
+
+        cam = new Camera(0, 0);
 
         handler.addObject(new Player(100, 100, handler, ObjectId.Player));
 
@@ -75,6 +78,11 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
+        for(int i = 0; i < handler.object.size(); i++){
+            if(handler.object.get(i).getId() == ObjectId.Player){
+                cam.tick(handler.object.get(i));
+            }
+        }
     }
 
     private void render() {
@@ -84,10 +92,16 @@ public class Game extends Canvas implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
+        Graphics2D g2d = (Graphics2D) g;
         ////////
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
+
+        g2d.translate(cam.getX(), cam.getY());///BEGIN OF CAM
+
         handler.render(g);
+
+        g2d.translate(-cam.getX(), -cam.getY());//END OF CAM
         ////////
         g.dispose();
         bs.show();

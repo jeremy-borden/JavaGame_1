@@ -1,5 +1,7 @@
 package Window;
 
+import Framework.GameObject;
+
 public class Camera {
     
     private float x,y;
@@ -7,6 +9,10 @@ public class Camera {
     public Camera(float x, float y){
         this.x = x;
         this.y = y;
+    }
+
+    public void tick(GameObject player){
+        x = -player.getX() + Game.WIDTH/2 - 24;
     }
 
     public float getX(){
