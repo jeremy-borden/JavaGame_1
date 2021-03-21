@@ -8,6 +8,8 @@ import java.util.LinkedList;
 
 import Framework.GameObject;
 import Framework.ObjectId;
+import Framework.Texture;
+import Window.Game;
 import Window.ObjectHandler;
 
 public class Player extends GameObject {
@@ -17,6 +19,8 @@ public class Player extends GameObject {
     private final float MAX_SPEED = 10;
 
     private ObjectHandler handler;
+
+    Texture tex = Game.getInstance();
 
     public Player(float x, float y, ObjectHandler handler, ObjectId id) {
         super(x, y, id);

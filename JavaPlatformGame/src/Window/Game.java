@@ -6,8 +6,10 @@ import java.awt.image.BufferedImage;
 
 import Framework.KeyInput;
 import Framework.ObjectId;
+import Framework.Texture;
 import Objects.Block;
 //import Objects.Player;
+import Objects.Player;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -26,11 +28,14 @@ public class Game extends Canvas implements Runnable {
 
     ObjectHandler handler; // Object
     Camera cam;
+    static Texture tex;
 
     private void init() {
         requestFocus();
         WIDTH = getWidth();
         HEIGHT = getHeight();
+
+        tex = new Texture();
 
         BufferedImageLoader loader = new BufferedImageLoader();
         
@@ -127,11 +132,17 @@ public class Game extends Canvas implements Runnable {
                 int green = (pixel >> 8) & 0xff;
                 int blue = (pixel) & 0xff;
 
-                if(red == 255 && green == 255 && blue == 255){
-                    handler.addObject(new Block(xx*32, yy*32, ObjectId.Block));
-                }
+                if(red == 255 && green == 255 && blue == 255)
+                    handler.addObject(new Block(xx*32, yy*32, 0, ObjectId.Block));
+                if(red == 0 && green == 0 && blue == 255)
+                    handler.addObject(new Player(xx*32, yy*32, handler, ObjectId.Player));
+                
             }
         }
+    }
+
+    public static Texture getInstance(){
+        return tex;
     }
 
     public static void main(String[] args) {

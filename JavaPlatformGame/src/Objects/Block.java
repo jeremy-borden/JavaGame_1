@@ -7,11 +7,18 @@ import java.util.LinkedList;
 
 import Framework.GameObject;
 import Framework.ObjectId;
+import Framework.Texture;
+import Window.Game;
 
 public class Block extends GameObject {
 
-    public Block(float x, float y, ObjectId id) {
+    Texture tex = Game.getInstance();
+
+    private int type;
+
+    public Block(float x, float y, int type, ObjectId id) {
         super(x, y, id);
+        this.type = type;
     }
 
     public void tick(LinkedList<GameObject> object) {
@@ -19,8 +26,10 @@ public class Block extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.white);
-        g.drawRect((int) x, (int) y, 32, 32);
+        if(type == 0)
+            g.drawImage(tex.block[0], (int)x , (int)y, null);
+        if(type == 1)
+            g.drawImage(tex.block[1], (int)x , (int)y, null);
     }
 
     public Rectangle getBounds(){
