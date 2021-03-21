@@ -36,6 +36,7 @@ public class ObjectHandler {
     }
 
     public void createLevel(){
+        /*
         for(int xx = 0; xx < Game.WIDTH*4; xx+=32){//floor
             addObject(new Block(xx,Game.HEIGHT-32,ObjectId.Block));
         }
@@ -48,6 +49,7 @@ public class ObjectHandler {
         for(int yy = 0; yy < Game.HEIGHT-32; yy+=32){///left wall
             addObject(new Block(0,yy,ObjectId.Block));
         }
+        */
     }
 
 }

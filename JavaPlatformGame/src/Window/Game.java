@@ -2,9 +2,11 @@ package Window;
 
 import java.awt.Canvas;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import Framework.KeyInput;
 import Framework.ObjectId;
+import Objects.Block;
 import Objects.Player;
 
 import java.awt.Graphics;
@@ -20,6 +22,8 @@ public class Game extends Canvas implements Runnable {
 
     public static int WIDTH, HEIGHT;
 
+    private BufferedImage level = null;
+
     ObjectHandler handler; // Object
     Camera cam;
 
@@ -28,13 +32,15 @@ public class Game extends Canvas implements Runnable {
         WIDTH = getWidth();
         HEIGHT = getHeight();
 
+        BufferedImageLoader loader = new BufferedImageLoader();
+        level = loader.loadImage("/level.png");//Loading level
+
         handler = new ObjectHandler();
 
         cam = new Camera(0, 0);
 
-        handler.addObject(new Player(100, 100, handler, ObjectId.Player));
-
-        handler.createLevel();
+        //handler.addObject(new Player(100, 100, handler, ObjectId.Player));
+        //handler.createLevel();
 
         this.addKeyListener(new KeyInput(handler));
     }
@@ -105,6 +111,24 @@ public class Game extends Canvas implements Runnable {
         ////////
         g.dispose();
         bs.show();
+    }
+
+    private void loadImageLevel(BufferedImage image){
+        int w =image.getWidth();
+        int h = image.getHeight();
+
+        for(int xx = 0; xx < h; xx++){
+            for(int yy = 0; yy < w; yy++){
+                int pixel  = image.getRGB(xx,yy);
+                int red = (pixel >> 16) & 0xff;
+                int green = (pixel >> 8) & 0xff;
+                int blue = (pixel) & 0xff;
+
+                if(red == 255 && green == 255 && blue == 255){
+                    handler.addObject(new Block(xx*32, yy*32, ObjectId.Block));
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
