@@ -1,9 +1,9 @@
 package Objects;
 
 import java.awt.Graphics;
-//import java.awt.Graphics2D;
+// import java.awt.Graphics2D;
+// import java.awt.Color;
 import java.awt.Rectangle;
-//import java.awt.Color;
 import java.util.LinkedList;
 
 import Framework.GameObject;
@@ -88,25 +88,30 @@ public class Player extends GameObject {
         else
             g.drawImage(tex.player[0], (int) x, (int) y, 48, 96, null);
 
+        // g.setColor(Color.red);
         // Graphics2D g2d = (Graphics2D) g;
+        // g2d.draw(getBounds());
+        // g2d.draw(getBoundsTop());
+        // g2d.draw(getBoundsRight());
+        // g2d.draw(getBoundsLeft());
+
 
     }
-
+    //from x, from y, to x, to y
     public Rectangle getBounds() {
-        return new Rectangle((int) (x + (width / 2) - (width / 4)), (int) (y + (height / 2)), (int) width / 2,
-                (int) height / 2);
+        return new Rectangle((int) (x + 4), (int) (y + (height/2)), (int) (width-9), (int) height / 2);
     }
 
     public Rectangle getBoundsTop() {
-        return new Rectangle((int) (x + (width / 2) - (width / 4)), (int) y, (int) width / 2, (int) height / 2);
+        return new Rectangle((int) (x + 4), (int) y, (int) width - 9, (int) height/2);
     }
 
     public Rectangle getBoundsRight() {
-        return new Rectangle((int) (x + width - 5), (int) y + 5, 5, (int) height - 10);
+        return new Rectangle((int) (x + width - 4), (int) y + 5, 3, (int) height - 10);
     }
 
     public Rectangle getBoundsLeft() {
-        return new Rectangle((int) x, (int) y + 5, 5, (int) height - 10);
+        return new Rectangle((int) x, (int) y + 5, 4, (int) height - 10);
     }
 
 }
