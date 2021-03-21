@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import Framework.KeyInput;
 import Framework.ObjectId;
 import Objects.Block;
-import Objects.Player;
+//import Objects.Player;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -33,11 +33,14 @@ public class Game extends Canvas implements Runnable {
         HEIGHT = getHeight();
 
         BufferedImageLoader loader = new BufferedImageLoader();
+        
         level = loader.loadImage("/level.png");//Loading level
 
         handler = new ObjectHandler();
 
         cam = new Camera(0, 0);
+
+        loadImageLevel(level);
 
         //handler.addObject(new Player(100, 100, handler, ObjectId.Player));
         //handler.createLevel();
