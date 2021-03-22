@@ -35,7 +35,7 @@ public class ObjectHandler {
         }
     }
 
-    private void loadImageLevel(BufferedImage image) {
+    public void loadImageLevel(BufferedImage image) {
         int w = image.getWidth();
         int h = image.getHeight();
 
