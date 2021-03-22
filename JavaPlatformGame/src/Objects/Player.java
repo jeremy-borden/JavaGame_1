@@ -84,8 +84,6 @@ public class Player extends GameObject {
     }
 
     public void render(Graphics g) {
-        // g.setColor(Color.blue);
-        // g.fillRect((int) x, (int) y, (int) width, (int) height);
         if (velX != 0)
             playerWalk.drawAnimation(g, (int) x, (int) y, 48, 96);
         else
