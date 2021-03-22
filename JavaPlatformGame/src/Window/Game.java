@@ -7,10 +7,9 @@ import java.awt.image.BufferedImage;
 import Framework.KeyInput;
 import Framework.ObjectId;
 import Framework.Texture;
-import Objects.Block;
-import Objects.Flag;
+//import Objects.Block;
+//import Objects.Flag;
 //import Objects.Player;
-import Objects.Player;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -25,7 +24,7 @@ public class Game extends Canvas implements Runnable {
 
     public static int WIDTH, HEIGHT;
 
-    private BufferedImage level = null, clouds = null;
+    public BufferedImage level = null, level2 = null, clouds = null;
 
     ObjectHandler handler; // Object
     Camera cam;
@@ -42,13 +41,13 @@ public class Game extends Canvas implements Runnable {
         tex = new Texture();
 
         level = loader.loadImage("/level.png");// Loading level
-        clouds = loader.loadImage("/bkg_cloud.png"); // load clound backgoubnd
-
+        // level2 = loader.loadImage("/level2.png");// Loading level
+        // clouds = loader.loadImage("/bkg_cloud.png"); // load clound backgoubnd
+        cam = new Camera(0, 0);
         handler = new ObjectHandler(cam);
 
-        cam = new Camera(0, 0);
 
-        loadImageLevel(level);
+        handler.loadImageLevel(level);
 
         // handler.addObject(new Player(100, 100, handler, ObjectId.Player));
         // handler.createLevel();
@@ -125,30 +124,6 @@ public class Game extends Canvas implements Runnable {
         ////////
         g.dispose();
         bs.show();
-    }
-
-    private void loadImageLevel(BufferedImage image) {
-        int w = image.getWidth();
-        int h = image.getHeight();
-
-        for (int xx = 0; xx < h; xx++) {
-            for (int yy = 0; yy < w; yy++) {
-                int pixel = image.getRGB(xx, yy);
-                int red = (pixel >> 16) & 0xff;
-                int green = (pixel >> 8) & 0xff;
-                int blue = (pixel) & 0xff;
-
-                if (red == 255 && green == 255 && blue == 255)
-                    handler.addObject(new Block(xx * 32, yy * 32, 0, ObjectId.Block));// drit
-                if (red == 0 && green == 255 && blue == 0)
-                    handler.addObject(new Block(xx * 32, yy * 32, 1, ObjectId.Block));// gras
-                if (red == 0 && green == 0 && blue == 255)
-                    handler.addObject(new Player(xx * 32, yy * 32, handler, cam, ObjectId.Player));
-                if (red == 255 && green == 255 && blue == 0)
-                    handler.addObject(new Flag(xx * 32, yy * 32, ObjectId.Flag));
-
-            }
-        }
     }
 
     public static Texture getInstance() {

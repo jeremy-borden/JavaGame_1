@@ -14,11 +14,17 @@ public class ObjectHandler {
 
     public LinkedList<GameObject> object = new LinkedList<GameObject>();
 
+    public BufferedImage level = null, level2 = null, clouds = null;
+
     private GameObject tempObject;
     private Camera cam;
 
     public ObjectHandler(Camera cam){
         this.cam = cam;
+        BufferedImageLoader loader = new BufferedImageLoader();
+        level = loader.loadImage("/level.png");// Loading level
+        level2 = loader.loadImage("/level2.png");// Loading level
+        clouds = loader.loadImage("/bkg_cloud.png"); // load clound backgoubnd
     }
 
     public void tick() {
@@ -35,7 +41,7 @@ public class ObjectHandler {
         }
     }
 
-    private void loadImageLevel(BufferedImage image) {
+    public void loadImageLevel(BufferedImage image) {
         int w = image.getWidth();
         int h = image.getHeight();
 
@@ -51,7 +57,7 @@ public class ObjectHandler {
                 if (red == 0 && green == 255 && blue == 0)
                     addObject(new Block(xx * 32, yy * 32, 1, ObjectId.Block));// gras
                 if (red == 0 && green == 0 && blue == 255)
-                    addObject(new Player(xx * 32, yy * 32, this, cam, ObjectId.Player));
+                    addObject(new Player(xx * 32, yy * 32, this, ObjectId.Player));
                 if (red == 255 && green == 255 && blue == 0)
                     addObject(new Flag(xx * 32, yy * 32, ObjectId.Flag));
 
@@ -59,7 +65,18 @@ public class ObjectHandler {
         }
     }
 
-    public void clearLevel(){
+    public void switchLevel(){
+        clearLevel();
+        cam.setX(0);
+        switch(Game.LEVEL){
+        case 1:
+            loadImageLevel(level2);
+            break;
+        }
+        Game.LEVEL++;
+    }
+
+    private void clearLevel(){
         object.clear();
     }
 
