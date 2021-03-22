@@ -10,6 +10,7 @@ import Framework.GameObject;
 import Framework.ObjectId;
 import Framework.Texture;
 import Window.Animation;
+import Window.Camera;
 import Window.Game;
 import Window.ObjectHandler;
 
@@ -18,16 +19,19 @@ public class Player extends GameObject {
     private float width = 48, height = 96;
     private float gravity = 0.5f;
     private final float MAX_SPEED = 10;
+    //private int facing = 1;
 
     private ObjectHandler handler;
+    private Camera cam;
 
     Texture tex = Game.getInstance();
 
     private Animation playerWalk;
 
-    public Player(float x, float y, ObjectHandler handler, ObjectId id) {
+    public Player(float x, float y, ObjectHandler handler, Camera cam, ObjectId id) {
         super(x, y, id);
         this.handler = handler;
+        this.cam = cam;
         playerWalk = new Animation(1, tex.player[1], tex.player[2], tex.player[3], tex.player[4], tex.player[5],
                 tex.player[6], tex.player[7]);
     }
@@ -43,6 +47,7 @@ public class Player extends GameObject {
                 velY = MAX_SPEED;
             }
         }
+        
 
         Collision(object);
 
@@ -75,6 +80,9 @@ public class Player extends GameObject {
                 if (getBoundsLeft().intersects(tempObject.getBounds())) {
                     x = tempObject.getX() + 33;
                 }
+            }else if (tempObject.getId() == ObjectId.Flag){
+                if(getBoundsRight().intersects(tempObject.getBounds()))
+                    handler.clearLevel();
             }
 
         }

@@ -27,6 +27,10 @@ public class ObjectHandler {
         }
     }
 
+    public void clearLevel(){
+        object.clear();
+    }
+
     public void addObject(GameObject object) {
         this.object.add(object);
     }

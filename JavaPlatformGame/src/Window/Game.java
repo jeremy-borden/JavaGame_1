@@ -8,6 +8,7 @@ import Framework.KeyInput;
 import Framework.ObjectId;
 import Framework.Texture;
 import Objects.Block;
+import Objects.Flag;
 //import Objects.Player;
 import Objects.Player;
 
@@ -29,6 +30,8 @@ public class Game extends Canvas implements Runnable {
     ObjectHandler handler; // Object
     Camera cam;
     static Texture tex;
+
+    public static int LEVEL = 1;
 
     private void init() {
         requestFocus();
@@ -140,7 +143,9 @@ public class Game extends Canvas implements Runnable {
                 if (red == 0 && green == 255 && blue == 0)
                     handler.addObject(new Block(xx * 32, yy * 32, 1, ObjectId.Block));// gras
                 if (red == 0 && green == 0 && blue == 255)
-                    handler.addObject(new Player(xx * 32, yy * 32, handler, ObjectId.Player));
+                    handler.addObject(new Player(xx * 32, yy * 32, handler, cam, ObjectId.Player));
+                if (red == 255 && green == 255 && blue == 0)
+                    handler.addObject(new Flag(xx * 32, yy * 32, ObjectId.Flag));
 
             }
         }
