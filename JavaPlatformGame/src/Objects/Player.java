@@ -77,12 +77,7 @@ public class Player extends GameObject {
                 }
             }else if (tempObject.getId() == ObjectId.Flag){
                 if(getBounds().intersects(tempObject.getBounds()))
-<<<<<<< HEAD
                     handler.switchLevel();
-=======
-                    handler.clearLevel();
-                    cam.setX(0);
->>>>>>> 5f558ce2e1677121ded817ec524eb3c13db1b75d
             }
 
         }
