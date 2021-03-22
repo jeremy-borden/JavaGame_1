@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable {
 
     ObjectHandler handler; // Object
     Camera cam;
-    static Texture tex;
+    public static Texture tex;
 
     public static int LEVEL = 1;
 
