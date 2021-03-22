@@ -83,6 +83,7 @@ public class Player extends GameObject {
             }else if (tempObject.getId() == ObjectId.Flag){
                 if(getBoundsRight().intersects(tempObject.getBounds()))
                     handler.clearLevel();
+                    cam.setX(0);
             }
 
         }

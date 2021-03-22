@@ -44,7 +44,7 @@ public class Game extends Canvas implements Runnable {
         level = loader.loadImage("/level.png");// Loading level
         clouds = loader.loadImage("/bkg_cloud.png"); // load clound backgoubnd
 
-        handler = new ObjectHandler();
+        handler = new ObjectHandler(cam);
 
         cam = new Camera(0, 0);
 
